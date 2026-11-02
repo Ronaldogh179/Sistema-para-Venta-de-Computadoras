@@ -1,7 +1,7 @@
-const config = require('./config/env');
-const app = require('./app');
-const { connectDatabase, disconnectDatabase } = require('./config/database');
-const logger = require('./utils/logger');
+const config = require('./src/config/env');
+const app = require('./src/app');
+const { connectDatabase, disconnectDatabase } = require('./src/config/database');
+const logger = require('./src/utils/logger');
 
 let server;
 let isShuttingDown = false;

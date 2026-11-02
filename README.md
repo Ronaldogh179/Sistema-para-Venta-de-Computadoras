@@ -108,47 +108,54 @@ El archivo `.env` está excluido del control de versiones. Solo se distribuye `.
 
 ```text
 tienda-computadores/
-├── app.js
 ├── index.js
-├── seed.js
-├── config/
-│   ├── database.js
-│   └── env.js
-├── constants/
-│   ├── httpStatus.js
-│   └── messages.js
-├── controllers/
-│   ├── clienteController.js
-│   ├── crudControllerFactory.js
-│   ├── productoController.js
-│   └── ventaController.js
-├── middleware/
-│   ├── asyncHandler.js
-│   ├── errorHandler.js
-│   └── notFound.js
-├── models/
-│   ├── Cliente.js
-│   ├── Producto.js
-│   └── Venta.js
-├── routes/
-│   ├── clienteRoutes.js
-│   ├── productoRoutes.js
-│   └── ventaRoutes.js
-├── utils/
-│   ├── AppError.js
-│   ├── logger.js
-│   └── validators.js
+├── src/
+│   ├── app.js
+│   ├── seed.js
+│   ├── config/
+│   │   ├── database.js
+│   │   └── env.js
+│   ├── constants/
+│   │   ├── httpStatus.js
+│   │   └── messages.js
+│   ├── controllers/
+│   │   ├── clienteController.js
+│   │   ├── crudControllerFactory.js
+│   │   ├── productoController.js
+│   │   └── ventaController.js
+│   ├── middleware/
+│   │   ├── asyncHandler.js
+│   │   ├── errorHandler.js
+│   │   └── notFound.js
+│   ├── models/
+│   │   ├── Cliente.js
+│   │   ├── Producto.js
+│   │   └── Venta.js
+│   ├── routes/
+│   │   ├── clienteRoutes.js
+│   │   ├── productoRoutes.js
+│   │   └── ventaRoutes.js
+│   └── utils/
+│       ├── AppError.js
+│       ├── logger.js
+│       └── validators.js
 ├── docs/
-├── database/sql/
-├── routes-doc/
+│   ├── database/
+│   │   ├── DDL.sql
+│   │   └── DML.sql
+│   ├── DICCIONARIO_DE_DATOS.md
+│   ├── DIAGRAMA_ER_Y_RELACIONAL.md
+│   └── ENDPOINTS.md
 ├── .env.example
-├── sonar-project.properties
-└── package.json
+├── .gitignore
+├── package.json
+├── README.md
+└── sonar-project.properties
 ```
 
 ## Arquitectura
 
-La aplicación sigue una separación de responsabilidades por capas:
+La aplicación sigue una separación de responsabilidades por capas. Todo el código de la aplicación se agrupa en `src/`, mientras que `index.js` actúa como punto de entrada:
 
 - **Routes**: define los endpoints y delega la lógica a los controladores.
 - **Controllers**: valida la entrada, aplica reglas de negocio y construye la respuesta.
@@ -196,7 +203,7 @@ La aplicación sigue una separación de responsabilidades por capas:
 | GET | `/` | Información general de la API |
 | GET | `/health` | Verificación del estado del servicio |
 
-La documentación detallada de los endpoints está disponible en [`routes-doc/ENDPOINTS.md`](routes-doc/ENDPOINTS.md).
+La documentación detallada de los endpoints está disponible en [`docs/ENDPOINTS.md`](docs/ENDPOINTS.md).
 
 ## Ejemplos de uso
 
@@ -268,10 +275,10 @@ Las exclusiones de análisis (dependencias, documentación y archivos SQL) está
 
 ## Documentación adicional
 
-- [Endpoints de la API](routes-doc/ENDPOINTS.md)
+- [Endpoints de la API](docs/ENDPOINTS.md)
 - [Diccionario de datos](docs/DICCIONARIO_DE_DATOS.md)
 - [Diagrama entidad-relación y modelo relacional](docs/DIAGRAMA_ER_Y_RELACIONAL.md)
-- [Scripts SQL de referencia](database/sql/)
+- [Scripts SQL de referencia](docs/database/)
 
 ## Licencia
 

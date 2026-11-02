@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const config = require('./config/env');
-const { version } = require('./package.json');
+const { version } = require('../package.json');
 const HTTP_STATUS = require('./constants/httpStatus');
 const clienteRoutes = require('./routes/clienteRoutes');
 const productoRoutes = require('./routes/productoRoutes');
