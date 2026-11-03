@@ -67,6 +67,42 @@ const createVenta = asyncHandler(async (req, res) => {
   res.status(HTTP_STATUS.CREATED).json(ventaPopulada);
 });
 
+const getResumenVentasPorCliente = asyncHandler(async (_req, res) => {
+  const resumen = await Venta.aggregate([
+    {
+      $group: {
+        _id: '$cliente',
+        cantidadVentas: { $sum: 1 },
+        totalFacturado: { $sum: '$total' },
+        productosVendidos: { $sum: { $sum: '$items.cantidad' } },
+      },
+    },
+    {
+      $lookup: {
+        from: 'clientes',
+        localField: '_id',
+        foreignField: '_id',
+        as: 'cliente',
+      },
+    },
+    { $unwind: '$cliente' },
+    {
+      $project: {
+        _id: 0,
+        clienteId: '$_id',
+        nombre: '$cliente.nombre',
+        telefono: '$cliente.telefono',
+        cantidadVentas: 1,
+        totalFacturado: 1,
+        productosVendidos: 1,
+      },
+    },
+    { $sort: { totalFacturado: -1 } },
+  ]);
+
+  res.status(HTTP_STATUS.OK).json(resumen);
+});
+
 const getVentas = asyncHandler(async (_req, res) => {
   const ventas = await Venta.find()
     .populate('cliente')
@@ -90,4 +126,9 @@ const getVentaById = asyncHandler(async (req, res) => {
   res.status(HTTP_STATUS.OK).json(venta);
 });
 
-module.exports = { createVenta, getVentas, getVentaById };
+module.exports = {
+  createVenta,
+  getVentas,
+  getVentaById,
+  getResumenVentasPorCliente,
+};

@@ -74,6 +74,7 @@ tienda-computadores/
 | Ventas por cliente | `/api/clientes/:id/ventas` |
 | Productos | `/api/productos` y `/api/productos/:id` |
 | Ventas | `/api/ventas` y `/api/ventas/:id` |
+| Resumen de ventas | `/api/ventas/resumen-por-cliente` |
 | Estado | `/` y `/health` |
 
 El detalle de métodos y cuerpos de petición está en [`docs/ENDPOINTS.md`](docs/ENDPOINTS.md).

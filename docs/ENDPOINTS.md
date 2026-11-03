@@ -31,7 +31,29 @@ Base URL: `http://localhost:4000`
 |---|---|---|
 | POST | `/api/ventas` | Crear una venta y calcular el total |
 | GET | `/api/ventas` | Obtener todas las ventas ordenadas por fecha descendente |
+| GET | `/api/ventas/resumen-por-cliente` | Resumen de ventas por cliente con agregación |
 | GET | `/api/ventas/:id` | Obtener una venta por ID |
+
+### Resumen de ventas por cliente
+
+`GET /api/ventas/resumen-por-cliente` usa un pipeline de agregación con `$group` y `$lookup` para devolver, por cliente:
+
+- cantidad de ventas
+- total facturado
+- productos vendidos
+
+```json
+[
+  {
+    "clienteId": "64f1c2a9e4b0a1b2c3d4e5f6",
+    "nombre": "Juan Pérez",
+    "telefono": "77712345",
+    "cantidadVentas": 1,
+    "totalFacturado": 9000,
+    "productosVendidos": 3
+  }
+]
+```
 
 ## Estado del servicio
 
