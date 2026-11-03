@@ -1,0 +1,69 @@
+SISTEMA PARA VENTA DE COMPUTADORAS
+Entrega del proyecto
+
+REPOSITORIO
+URL: https://github.com/Ronaldogh179/Sistema-para-Venta-de-Computadoras
+Rama: main
+Versión: 1.0.0
+
+DESCRIPCIÓN
+API REST para la gestión de clientes, productos y facturación de una tienda
+de computadores. Desarrollada con Node.js, Express, Mongoose y MongoDB.
+
+TECNOLOGÍAS
+- Node.js
+- Express
+- Mongoose
+- MongoDB
+- Helmet
+- CORS
+- Morgan
+- dotenv
+
+MODELOS DE DATOS (Mongoose)
+- src/models/Cliente.js
+  Campos: nombre, direccion, telefono.
+- src/models/Producto.js
+  Campos: nombre, precio, marca, categoria.
+- src/models/Venta.js
+  Campos: cliente, items (producto, cantidad, precioUnitario), fecha, total.
+
+PIPELINE DE AGREGACIÓN
+Endpoint: GET /api/ventas/resumen-por-cliente
+Etapas: $group, $lookup, $unwind, $project y $sort.
+Resultado por cliente: cantidad de ventas, total facturado y productos vendidos.
+Archivo: src/controllers/ventaController.js
+
+ESTRUCTURA PRINCIPAL
+- index.js: punto de entrada.
+- src/: código de la aplicación.
+- docs/: documentación y scripts SQL.
+
+EJECUCIÓN
+1. npm install
+2. Copiar .env.example a .env
+3. Configurar MONGO_URI
+4. npm run seed (opcional)
+5. npm run dev
+
+La API queda disponible en http://localhost:4000
+
+SEGURIDAD
+- El archivo .env no está versionado.
+- No se incluyen contraseñas ni claves de MongoDB Atlas.
+- La cadena de conexión se configura mediante la variable MONGO_URI.
+
+DOCUMENTACIÓN
+- docs/ENDPOINTS.md
+- docs/DICCIONARIO_DE_DATOS.md
+- docs/DIAGRAMA_ER_Y_RELACIONAL.md
+- docs/database/DDL.sql
+- docs/database/DML.sql
+
+LISTA DE VERIFICACIÓN
+[X] Repositorio público.
+[X] Archivo de entrega en formato .txt.
+[X] Modelos de datos en formato Mongoose incluidos.
+[X] Pipeline de agregación funcional.
+[X] Sin credenciales ni claves expuestas.
+[X] Documentación incluida.
